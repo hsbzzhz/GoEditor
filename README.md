@@ -39,8 +39,8 @@ Then you can access GoEditor at: http://localhost:3000/
 - run locally by using docker
 ```shell
 # get latest image from docker hub
-docker pull hsbzzhz/go-editor
-docker run -it hsbzzhz/go-editor -p 9090:8080
+docker pull hsbzzhz/go-editor:latest
+docker run -it -p 9090:8080 hsbzzhz/go-editor
 ```
 
 then you can visit at: http://localhost:9090/
