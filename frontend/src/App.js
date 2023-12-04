@@ -15,7 +15,7 @@ export default function TestPage() {
     function doSubmit() {
         console.log(code)
         // 发送 POST 请求
-        fetch('http://localhost:8080/add', {
+        fetch('/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', // 设置请求头为 JSON 格式

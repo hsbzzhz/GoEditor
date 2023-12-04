@@ -37,11 +37,12 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		// 创建文件
 		err := util.SaveStrToFile("template.go", codebody.Code)
 		if err != nil {
-			print(err) //这里有问题
+			print(err)
 		}
 		// 执行文件，获取结果
 		workDir, _ := os.Getwd()
 		filePath := filepath.Join(workDir, "src", "var", "template.go")
+		print("run file dir:" + filePath)
 		res := util.CmdAndRunFile(filePath)
 		// 对解析得到对body进行操作
 		ret["code"] = res.Code

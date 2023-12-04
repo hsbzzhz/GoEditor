@@ -1,0 +1,10 @@
+version: '3'
+services:
+  svc-go:
+    restart: always
+    image: hsbzzhz/go-editor
+    build: .
+    ports:
+      - "9090:8080"
+    environment:
+      - TZ=utc-8

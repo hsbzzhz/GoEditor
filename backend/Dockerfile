@@ -4,6 +4,8 @@ LABEL authors="hogan"
 WORKDIR /app
 COPY . .
 
-RUN go build main.go
+RUN go build -o code-editor
 
-ENTRYPOINT ["top", "-b"]
+EXPOSE 8080
+
+CMD ["./code-editor"]

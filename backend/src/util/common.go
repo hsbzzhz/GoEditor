@@ -15,7 +15,7 @@ type ExecRes struct {
 func SaveStrToFile(fileName, fileBody string) error {
 	workDir, _ := os.Getwd()
 	fileRelPath := filepath.Join(workDir, "src", "var", "template.go")
-
+	print("save file dir:" + fileRelPath)
 	f, err := os.Create(fileRelPath) //创建文件
 	if err != nil {
 		return err

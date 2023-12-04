@@ -35,3 +35,14 @@ the frontend server will be run on: http://localhost:3000
 
 Then you can access GoEditor at: http://localhost:3000/
 
+### method2:
+- run locally by using docker
+```shell
+# get latest image from docker hub
+docker pull hsbzzhz/go-editor
+docker run -it hsbzzhz/go-editor -p 9090:8080
+```
+
+then you can visit at: http://localhost:9090/
+
+![WX20231204-225300@2x.png](WX20231204-225300%402x.png)

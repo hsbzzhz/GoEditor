@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	print("abcdefg~4re")5
+	print("Hello world!!")3
 }
