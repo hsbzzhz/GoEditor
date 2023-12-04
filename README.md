@@ -27,6 +27,7 @@ the backend server will be run on: http://localhost:8080
 ```shell
 # go to dir and run
 cd frontend
+npm install
 npm start
 ```
 
