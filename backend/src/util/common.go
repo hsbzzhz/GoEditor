@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 type ExecRes struct {
@@ -13,9 +14,9 @@ type ExecRes struct {
 
 func SaveStrToFile(fileName, fileBody string) error {
 	workDir, _ := os.Getwd()
-	workDir += "/backend/src/var/"
+	fileRelPath := filepath.Join(workDir, "src", "var", "template.go")
 
-	f, err := os.Create(workDir + fileName) //创建文件
+	f, err := os.Create(fileRelPath) //创建文件
 	if err != nil {
 		return err
 	}
