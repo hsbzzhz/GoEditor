@@ -6,7 +6,13 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handler.DemoHandler)
-	http.HandleFunc("/add", handler.UploadHandler)
-	http.ListenAndServe(":8080", nil)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/show", handler.DemoHandler)
+	mux.HandleFunc("/add", handler.UploadHandler)
+	// 启动静态文件服务
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./src/static/"))))
+
+	mux.HandleFunc("/index", handler.IndexHandler)
+
+	http.ListenAndServe(":8080", mux)
 }
