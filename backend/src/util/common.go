@@ -8,15 +8,16 @@ import (
 )
 
 type ExecRes struct {
-	Code string // 运行结果 succ or fail
-	Res  string // 输出结果
+	Code    int    `json:"code"`    // 0 : success; 1 : fail
+	Message string `json:"message"` // success|fail
+	Data    string `json:"data"`    // output of execution
 }
 
 func SaveStrToFile(fileName, fileBody string) error {
 	workDir, _ := os.Getwd()
-	fileRelPath := filepath.Join(workDir, "src", "var", "template.go")
+	fileRelPath := filepath.Join(workDir, "src", "var", fileName)
 	print("save file dir:" + fileRelPath)
-	f, err := os.Create(fileRelPath) //创建文件
+	f, err := os.Create(fileRelPath) //create the code file locally
 	if err != nil {
 		return err
 	}
@@ -34,13 +35,15 @@ func CmdAndRunFile(filePath string) ExecRes {
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("error out:\n%s\n", string(out))
-		ret.Code = "fail"
-		ret.Res = string(out)
+		ret.Code = 1
+		ret.Message = "fail"
+		ret.Data = string(out)
 
 		return ret
 	}
-	ret.Code = "succ"
-	ret.Res = string(out)
+	ret.Code = 0
+	ret.Message = "success"
+	ret.Data = string(out)
 	fmt.Printf("combined out:\n%s\n", string(out))
 	return ret
 }

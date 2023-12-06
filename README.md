@@ -7,7 +7,7 @@
 - You can see the result for your code for both cases in success or failure
 
 ## display
-![1701589034999.jpg](1701589034999.jpg)
+![img.png](homepage.png)
 
 - `submit` button: submit your code snippet to the backend api
 - `save` button: save your code, you can keep your code even if you refresh your browser
@@ -22,6 +22,8 @@
 cd backend
 go run main.go
 ```
+
+![postman-test.png](postman-test.png)
 the backend server will be run on: http://localhost:8080
 - run frontend part locally:
 ```shell
@@ -40,9 +42,8 @@ Then you can access GoEditor at: http://localhost:3000/
 ```shell
 # get latest image from docker hub
 docker pull hsbzzhz/go-editor:latest
-docker run -it -p 9090:8080 hsbzzhz/go-editor
+docker run -it -d --name go-editor -p 9090:8080 hsbzzhz/go-editor
 ```
+**p.s. don't try to run docker file locally unless you have prepared compiled file in `/static`**
 
 then you can visit at: http://localhost:9090/
-
-![WX20231204-225300@2x.png](WX20231204-225300%402x.png)

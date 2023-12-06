@@ -7,9 +7,8 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/show", handler.DemoHandler)
-	mux.HandleFunc("/add", handler.UploadHandler)
-	// 启动静态文件服务
+	mux.HandleFunc("/golang/run-code", handler.UploadHandler)
+	// build server for static files for frontend
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/static/"))))
 	mux.HandleFunc("/", handler.IndexHandler)
 

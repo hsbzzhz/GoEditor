@@ -26,29 +26,22 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 		w.Header().Set("content-type", "application/json")
 
-		ret := map[string]interface{}{}
-
 		body, _ := io.ReadAll(r.Body)
 		defer r.Body.Close()
 
 		var codebody CodeBody
 		json.Unmarshal(body, &codebody)
 
-		// 创建文件
-		err := util.SaveStrToFile("template.go", codebody.Code)
-		if err != nil {
-			print(err)
-		}
-		// 执行文件，获取结果
+		// receive the code and save as local file
+		util.SaveStrToFile("template.go", codebody.Code)
+
+		// run file and get the results
 		workDir, _ := os.Getwd()
 		filePath := filepath.Join(workDir, "src", "var", "template.go")
 		print("run file dir:" + filePath)
 		res := util.CmdAndRunFile(filePath)
-		// 对解析得到对body进行操作
-		ret["code"] = res.Code
-		ret["result"] = res.Res
 
-		str, _ := json.Marshal(ret)
+		str, _ := json.Marshal(res)
 		w.Write(str)
 	}
 }
